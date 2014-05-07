@@ -1,0 +1,748 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Aplic. Web de jQuery Mobile</title>
+<link href="jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css"/>
+<script src="jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery.mobile-1.0.min.js" type="text/javascript"></script>
+<script src="jquery-1.9.1.min.js"></script>
+<script src="jquery.validate.js"></script>
+<script src="atencionCliente.js"></script>
+<script type="text/javascript" charset="utf-8">
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        checkConnection();
+    }
+
+        function checkConnection() {
+            var networkState = navigator.connection.type;
+
+            var states = {};
+            states[Connection.UNKNOWN]  = 'Unknown connection';
+            states[Connection.ETHERNET] = 'Ethernet connection';
+            states[Connection.WIFI]     = 'WiFi connection';
+            states[Connection.CELL_2G]  = 'Cell 2G connection';
+            states[Connection.CELL_3G]  = 'Cell 3G connection';
+            states[Connection.CELL_4G]  = 'Cell 4G connection';
+            states[Connection.CELL]     = 'Cell generic connection';
+            states[Connection.NONE]     = 'No network connection';
+
+            alert('Connection type: ' + states[networkState]);
+        }
+
+</script>
+<script type="text/javascript">
+ $(document).ready(function() {
+                $("#peticion").click(function(event) {
+                    $("#capa").load('http://localhost/test/computadoras.php',{}, function(response, status, xhr) {
+                          if (status == "error") {
+                            var msg = "<strong>¡Error!</strong> Por favor verifica tu conexión a internet";
+                            $("#capaerror").html('<div>' + msg + '</div>');
+                          }
+                        });
+                });
+            });  
+</script>
+<style type="text/css">
+body{
+	background: #d0d9d4;
+	padding-top: 10%;
+	text-align: center;
+}
+.boton{
+	/* estilos para la tipografia del botón*/
+	
+	color: #009;
+	font-family: sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+    padding: 15px 25px;
+	margin-right: 30px;
+	cursor: pointer;
+	border: 0;
+    border-radius: 30px;
+
+	/* propiedades para la animacion del boton */
+	
+	transition: all 0.20s linear;
+	-webkit-transition: all 0.20s linear;
+	-moz-transition: all 0.20s linear;
+	position: relative;
+	bottom: 0;
+}
+
+.rojo{
+	/* Estilos para el fondo del boton */
+	background: #009;
+	box-shadow: 0px 5px 0 #8F1502;			
+}
+.boton:active{
+	/* Posicion del boton al clickearlo */
+	bottom: -5px;
+}
+
+.rojo:active{
+	/* Sombra del boton al clickearlo */
+	box-shadow:0 0 0 #9a1604, inset 0 0 5px #000000;
+	background: #009;			
+	
+}
+.fondo{
+	background:#009;
+}
+</style>
+<body> 
+
+<div data-role="page" id="page">
+	<div data-role="header" class="fondo">
+		<h3>Bienvenidos a </h3>
+        <h3>Telmex</h3>
+        <h3>de Cd. Altamirano</h3>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+			<li><a href="#page2">Ver Productos</a></li>
+            <li><a href="#page3">Falla en la Linea Telefonica o Internet</a></li>
+			<li><a href="#page4">Comentarios o Sugerencias</a></li>
+		</ul>		
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><img src="images/telmex.jpg"></h4>
+	</div>
+</div>
+
+<div data-role="page" id="page2">
+	<div data-role="header" class="fondo">
+		<h1>Productos</h1>
+	</div>
+	<div data-role="content">
+    	<ul data-role="listview">	
+        <li><a href="computadoras.html">Computadoras</a></li>
+        <li><a href="minis.html">Minis</a></li>
+        <li><a href="televisores.html">Televisores</a></li>
+        <li><a href="tablets.html">Tablets</a></li>
+        <li><a href="telefonos.html">Teléfonos</a></li>
+        <li><a href="accesorios.html">Accesorios</a></li>
+        <li><a href="ipads.html">Ipads</a></li>
+        </ul>		
+	</div>
+
+		<h4><a href="#page" class="boton rojo">Regresar</a></h4>
+
+</div>
+
+<div data-role="page" id="page3">
+	<div data-role="header" class="fondo">
+		<h1>Reportes</h1>
+	</div>
+	<div data-role="content">	
+    <form method="post" id="formid">
+        <table width="300px">
+        <tr>
+        <td width="106">Nombre:*</td><td width="222"><input type="text" name="nombre" id="nombre" class="frm_input_cuadrado" size="20" maxlength="20"/><br /></td>
+		</tr>
+		<tr>
+		<td>Apellidos:*</td><td><input type="text" name="apellido" id="apellido" class="frm_input_cuadrado" size="20" maxlength="50"/><br /></td>
+		</tr>
+		<tr>
+		<td>Email:</td><td><input type="text" name="email" id="email" class="frm_input_cuadrado" size="20" maxlength="25"/><br /></td>
+		</tr>
+		<tr>
+		<td>Tel&eacute;fono:*</td><td><input type="text" name="telefono" id="telefono" class="frm_input_cuadrado" size="20" maxlength="15"/></td>
+		</tr>
+		<tr>
+		<td>Poblaci&oacute;n:*</td><td><input type="text" name="poblacion" id="poblacion" class="frm_input_cuadrado" size="20" maxlength="30"/></td>
+		</tr>
+		<tr>
+		<td>Descripci&oacute;n del problema:*</td><td></td>
+		</tr>
+		<tr>
+		<td colspan="2" align="center"><textarea id="mensaje" name="mensaje" rows="5" cols="45" class="frm_input_cuadrado" maxlength="500"></textarea><br /></td>
+		</tr>
+		<tr>
+		<td class="error" colspan="2">Los campos marcados con una (*) son obligatorios.</td><td width="6"></td>
+		</tr>
+		<tr><td colspan="2" align="center"><input type="submit" value="Enviar" class="sprites_gen" id="btn_accesos_1"/></td></tr>
+		</table>
+        </form>		
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="#page">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="page4">
+	<div data-role="header" class="fondo">
+		<h1>Comentario</h1>
+	</div>
+	<div data-role="content">	
+    <form method="post" id="formid2">
+        <table width="300px">
+        <tr>
+        <td width="106">Nombre:*</td><td width="222"><input type="text" name="nombre" id="nombre" class="frm_input_cuadrado" size="20" maxlength="20"/><br /></td>
+		</tr>
+		<tr>
+		<td>Apellidos:*</td><td><input type="text" name="apellido" id="apellido" class="frm_input_cuadrado" size="20" maxlength="50"/><br /></td>
+		</tr>
+		<tr>
+		<td>Tel&eacute;fono:*</td><td><input type="text" name="telefono" id="telefono" class="frm_input_cuadrado" size="20" maxlength="15"/></td>
+		</tr>
+		<tr>
+		<td>Poblaci&oacute;n:*</td><td><input type="text" name="poblacion" id="poblacion" class="frm_input_cuadrado" size="20" maxlength="30"/></td>
+		</tr>
+		<tr>
+		<td>Comentario o Sugerencia:*</td><td></td>
+		</tr>
+		<tr>
+		<td colspan="2" align="center"><textarea id="mensaje" name="mensaje" rows="5" cols="45" class="frm_input_cuadrado" maxlength="500"></textarea><br /></td>
+		</tr>
+		<tr>
+		<td class="error" colspan="2">Los campos marcados con una (*) son obligatorios.</td><td width="6"></td>
+		</tr>
+		<tr><td colspan="2" align="center"><input type="submit" value="Enviar" class="sprites_gen" id="btn_accesos_1"/></td></tr>
+		</table>
+        </form>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="#page">Regresar</a></h4>
+	</div>
+</div>
+
+<!--Inicia Computadoras -->
+
+<div data-role="page" id="compu1">
+	<div data-role="header" class="fondo">
+		<h1>Desktop DELL</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/compus/dell/dell SKU_1041096.jpg">
+   		<h4>Características</h4>        
+		<h4>Sistema Operativo: Windows 8</h4>
+		<h4>Procesador Celeron G470</h4>
+		<h4>Memoria RAM 4GB</h4>
+		<h4>Disco Duro 500 GB</h4>
+        <h4>Pantalla 20"</h4>
+        <h4>Bluetooth</h4>
+        <h4>Cámara Web</h4>
+        <h4>2 Puertos USB</h4>
+        <h4>Lector de Tarjetas SD</h4>
+        <h4>PRECIO CLIENTE INFINITUM</h4>
+		<h4>Pago de contado:	$ 7,872</h4>
+		<h4>Precio regular:	 $ 8,502</h4>
+		<h4>12 meses:	$ 709</h4>
+		<h4>24 meses:	$ 413</h4>
+		<h4>36 meses:	$ 308</h4>
+		<h4>48 meses:	$ 247</h4>
+        <h4>NOTA: Los pagos mensuales serán cargados a tu Recibo TELMEX</h4>
+<h4>Precios expresados en Moneda Nacional con IVA incluido.</h4>
+<h4>Precios sujetos a cambios sin previo aviso.</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+    <h4><a href="computadoras.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="compu2">
+	<div data-role="header" class="fondo">
+		<h1>Desktop HP</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/compus/hp/hp sku_1041192.jpg">
+		<h4>Características</h4>        
+		<h4>Sistema Operativo: Windows 8</h4>
+		<h4>Procesador Core i5 3330S Tercera Generación</h4>
+		<h4>Memoria RAM 8GB</h4>
+		<h4>Disco Duro 2 TB</h4>
+        <h4>Pantalla 23"</h4>
+        <h4>Quemador de DVD</h4>        
+        <h4>Cámara Web y Microfono Integrado</h4>
+        <h4>Bluetooth</h4>
+        <h4>PRECIO CLIENTE INFINITUM</h4>
+		<h4>Pago de contado:	$ 16,499</h4>
+		<h4>Precio regular:	 $ 18,224</h4>
+		<h4>12 meses:	$ 1,519</h4>
+		<h4>24 meses:	$ 879</h4>
+		<h4>36 meses:	$ 659</h4>
+		<h4>48 meses:	$ 526</h4>
+        <h4>NOTA: Los pagos mensuales serán cargados a tu Recibo TELMEX</h4>
+<h4>Precios expresados en Moneda Nacional con IVA incluido.</h4>
+<h4>Precios sujetos a cambios sin previo aviso.</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+    <h4><a href="computadoras.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="compu3">
+	<div data-role="header" class="fondo">
+		<h1>Desktop LENOVO</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/compus/lenovo/lenovo sku_1041142.jpg">
+		<h4>Características</h4>
+		<h4>Sistema Operativo: Windows 8</h4>
+		<h4>Procesador AMD A4</h4>
+		<h4>Memoria RAM 8GB</h4>
+		<h4>Disco Duro 1 TB</h4>
+        <h4>Pantalla 20"</h4>
+        <h4>Quemador de DVD</h4>
+        <h4>Cámara Web</h4>
+        <h4>4 Puertos USB</h4>
+        <h4>PRECIO CLIENTE INFINITUM</h4>
+		<h4>Pago de contado:	$ 8,949</h4>
+		<h4>Precio regular:	 $ 9,665</h4>
+		<h4>12 meses:	$ 805</h4>
+		<h4>24 meses:	$ 469</h4>
+		<h4>36 meses:	$ 350</h4>
+		<h4>48 meses:	$ 281</h4>
+		
+        <h4>NOTA: Los pagos mensuales serán cargados a tu Recibo TELMEX</h4>
+<h4>Precios expresados en Moneda Nacional con IVA incluido.</h4>
+<h4>Precios sujetos a cambios sin previo aviso.</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+    <h4><a href="computadoras.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="compu4">
+	<div data-role="header" class="fondo">
+		<h1>Desktop LANIX</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/compus/lanix/lanis sku_1041095.jpg">
+   		<h4>Características</h4>
+		<h4>Sistema Operativo: Windows 8</h4>
+		<h4>Procesador AMD E 350</h4>
+		<h4>Memoria RAM 2GB</h4>
+		<h4>Disco Duro 500 GB</h4>
+        <h4>Pantalla 18.5"</h4>
+        <h4>Quemador de DVD</h4>
+        <h4>4 Puertos USB Traseros + 2 Frontales</h4>
+        <h4>PRECIO CLIENTE INFINITUM</h4>
+		<h4>Pago de contado:	$ 6,029</h4>
+		<h4>Precio regular:	 $ 6,511</h4>
+		<h4>12 meses:	$ 543</h4>
+		<h4>24 meses:	$ 316</h4>
+		<h4>36 meses:	$ 236</h4>
+		<h4>48 meses:	$ 189</h4>
+		
+        <h4>NOTA: Los pagos mensuales serán cargados a tu Recibo TELMEX</h4>
+<h4>Precios expresados en Moneda Nacional con IVA incluido.</h4>
+<h4>Precios sujetos a cambios sin previo aviso.</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+    <h4><a href="computadoras.html">Regresar</a></h4>
+	</div>
+</div>
+
+<!--Temina Computadoras -->
+<!--Inicia Minis -->
+
+<div data-role="page" id="mini1">
+	<div data-role="header" class="fondo">
+		<h1>LAPTOP ACER AOD756</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/minis/Mini Acer.jpg">
+        <h4>Procesador: INTEL CELERON 847</h4>
+        <h4>Disco Duro: 500 GB</h4>
+        <h4>Memoria RAM: 2 GB</h4>
+        <h4>Sistema Operativo: WINDOWS 8</h4>	
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="minis.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="mini2">
+	<div data-role="header" class="fondo">
+		<h1>NETBOOK ASUS LAMBORGHINI</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/minis/Mini ASUS-LAMBORGHINI_Eee_PC_VX6.jpg">
+        <h4>Procesador: INTEL ATOM D525(1.80 GHZ) DUAL CORE</h4>
+        <h4>Disco Duro: 250 GB</h4>
+        <h4>Memoria RAM: 2 GB</h4>
+        <h4>Sistema Operativo: WINDOWS 7 HOME PREMIUM</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="minis.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="mini3">
+	<div data-role="header" class="fondo">
+		<h1>NETBOOK LENOVO S100C</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/minis/Mini LENOVO S100C.jpg">
+        <h4>Procesador: INTEL ATOM N2600</h4>
+        <h4>Disco Duro: 320 GB</h4>
+        <h4>Memoria RAM: 2 GB</h4>
+        <h4>Sistema Operativo: WINDOWS 7 STARTER</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="minis.html">Regresar</a></h4>
+	</div>
+</div>
+
+<!--Termina Minis -->
+<!--Inicia Televisores -->
+
+<div data-role="page" id="tele1">
+	<div data-role="header" class="fondo">
+		<h1>TELEVISION SAMSUMG UN40EH5300</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/teles/SAMSUMG TV.jpg">
+        <h4>Pantalla LED de 40"</h4>
+        <h4>3 PUERTOS HDMI</h4>
+        <h4>RESOLUCION FULL HD</h4>
+        <h4>WIFI</h4>
+        <h4>USB</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="televisores.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="tele2">
+	<div data-role="header" class="fondo">
+		<h1>TELEVISION LG 32CS560</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/teles/LG 42.jpg">
+        <h4>RESOLUCION FULL HD(1920x1080)</h4>
+        <h4>2 PUERTOS HDMI</h4>
+        <h4>1 USB</h4>
+        <h4>2 PARLANTES</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="televisores.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="tele3">
+	<div data-role="header" class="fondo">
+		<h1>TELEVISION SAMSUMG UN32EH4000</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/teles/Samsung UN32EH400.jpg">
+        <h4>32" LED</h4>
+        <h4>RESOLUCION HD</h4>        
+        <h4>2 PUERTOS HDMI</h4>
+        <h4>USB MOVIE</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="televisores.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="tele4">
+	<div data-role="header" class="fondo">
+		<h1>TELEVISION LG 37CS560</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/teles/LG.jpg">
+        <h4>RESOLUCION FULL HD</h4>
+        <h4>Pantalla LED de 37"</h4>
+        <h4>3 PUERTOS HDMI</h4>
+        <h4>1 VIA 2 PARLANTES 10W + 10W</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="televisores.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="tele5">
+	<div data-role="header" class="fondo">
+		<h1>TELEVISION SHARP LC39LE441U</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/teles/SHARP.png">
+        <h4>RESOLUCION FULL HD(1920x1080)</h4>
+        <h4>Pantalla LED de 39"</h4>
+        <h4>3 PUERTOS HDMI</h4>
+        <h4>1 USB</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="televisores.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="tele6">
+	<div data-role="header" class="fondo">
+		<h1>TELEVISION SONY KDL-40BX450</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/teles/SONY.jpg">
+        <h4>RESOLUCION FULL HD(1920x1080)</h4>
+        <h4>USB PLAY</h4>
+        <h4>SONIDO DOLBY DIGITAL</h4>
+        <h4>LCD 40"</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="televisores.html">Regresar</a></h4>
+	</div>
+</div>
+
+<!--Termina Televisores-->
+<!--Inicia Telefonos-->
+
+<div data-role="page" id="fono1">
+	<div data-role="header" class="fondo">
+		<h1>TEL AS280 BLANCO</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/telefonos/AS280 blanco.jpg">
+        <h4>Agenda para 80 Numeros</h4>
+        <h4>Identificador de Llamadas</h4>
+        <h4>Altavoz</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="telefonos.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="fono2">
+	<div data-role="header" class="fondo">
+		<h1>Tel. Escuderia Telmex</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/telefonos/escuderia-telmex-modelo-piloto.png">
+        <h4>Modelo Auto Edición de Colección</h4>
+        <h4>Identificador de Llamadas</h4>
+        <h4>Altavoz</h4>
+        <h4>Alambrico</h4>
+        <h4>Pantalla Retractil</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="telefonos.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="fono3">
+	<div data-role="header" class="fondo">
+		<h1>Tel Gigaset trios inalambrico 1033089</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/telefonos/gigaset trios inalambrico.jpg">
+        <h4>Paquete Base y Dos Extenciones</h4>
+        <h4>Identificador de Llamadas</h4>
+        <h4>80 Registros</h4>
+        <h4>Pantalla Iluminada</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="telefonos.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="fono4">
+	<div data-role="header" class="fondo">
+		<h1>Tel. Inalambrico F200 Blanco Azul</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/telefonos/INALAMBRICO F200.jpg">
+        <h4>Memorias Para Agenda</h4>
+        <h4>Identificador de Llamadas</h4>
+        <h4>Pantalla Iluminada</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="telefonos.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="fono5">
+	<div data-role="header" class="fondo">
+		<h1>Tel. Inalambrico C300 base</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/telefonos/Tel Inal C300 Base N  sku 1038162.jpg">
+        <h4>Pantalla LCD a Color 1.7 Pulgadas</h4>
+        <h4>Baterias Recargables "AAA"</h4>
+        <h4>Identificador de Llamadas y Altavoz</h4>
+        <h4>Tono con 18 Melodias</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="telefonos.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="fono6">
+	<div data-role="header" class="fondo">
+		<h1>Tel. Faciltel Class-X</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/telefonos/Telefono FaciltelClassx 2958.jpg">
+        <h4>Teclas de Acceso a Servicios Digitales</h4>
+        <h4>Identificador de Llamadas</h4>
+        <h4>Altavoz con Volumen</h4>
+        <h4>25 Memorias</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="telefonos.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="fono7">
+	<div data-role="header" class="fondo">
+		<h1>Telefono Trim Class</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/telefonos/trim class.jpg">
+        <h4>Modelo Gondola</h4>
+        <h4>Identificador de Llamadas</h4>
+        <h4>10 Memorias</h4>
+        <h4>Alambrico</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="telefonos.html">Regresar</a></h4>
+	</div>
+</div>
+
+<!--Termina Telefonos-->
+<!--Inicia Accesorios-->
+
+<div data-role="page" id="acce1">
+	<div data-role="header" class="fondo">
+		<h1>CONSOLA XBOX 360 4GB FIFA 2013</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/accecorios/FIFA2013 CONSOLA.jpg">
+        <h4>Disco Duro de 4GB</h4>
+        <h4>Conexión Inalambrica WIFI</h4>
+        <h4>Contro Inalambrico</h4>
+        <h4>Incluye Juego FIFA 2013</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="accesorios.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="acce2">
+	<div data-role="header" class="fondo">
+		<h1>CONSOLA XBOX 360 250GB FORZA 4</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/accecorios/xbox_360_250gb_holiday_bundle_skyrim_forza_4_47631_ampliada.jpg">
+        <h4>Disco Duro de 250 GB</h4>
+        <h4>Control Inalámbrico</h4>
+        <h4>Headset Alámbrico</h4>
+        <h4>1 Mes Gratis de Suscripción a Xbox Live</h4>
+        <h4>Juego Forza 4</h4>
+        <h4>Juego Skyrim Descargable</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="accesorios.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="acce3">
+	<div data-role="header" class="fondo">
+		<h1>CONSOLA 3DS GRIS</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/accecorios/3ds_103663_post.jpg">
+        <h4>Pantalla LCD de 3.53" que Permite la Visión de 3D sin Necesidad de Lentes</h4>
+        <h4>WIFI</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="accesorios.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="acce4">
+	<div data-role="header" class="fondo">
+		<h1>Regulador Koblenz</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/accecorios/regulador koblenz.jpg">
+        <h4>Protección Contra Altas y Bajas de Voltaje</h4>
+        <h4>8 Contactos Aterrizados</h4>
+        <h4>Protector de Line Telefónica</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="accesorios.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="acce5">
+	<div data-role="header" class="fondo">
+		<h1>Office Hogar y Estudiante 2010</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/accecorios/Office Hogar y Estudiante.jpg">
+        <h4>Microsoft Word</h4>
+        <h4>Microsoft Excel</h4>
+        <h4>Microsoft Power Point</h4>
+        <h4>Microsoft Onenote</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="accesorios.html">Regresar</a></h4>
+	</div>
+</div>
+
+<!--Termina Accesorios-->
+<!--Inicia Ipads-->
+
+<div data-role="page" id="ipad1">
+	<div data-role="header" class="fondo">
+		<h1>IPAD 2 WIFI 1GB BLANCA</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/ipads/tablets_ipad_2_wifi_blanco.jpg">
+        <h4>Pantalla Ancha Multitouch Retroiluminada Por LED Brillante de 9.7"</h4>
+        <h4>Tecnología Bluetooth 2.1 + EDR</h4>
+        <h4>Resolución de 1024x768 pixeles</h4>
+        <h4>WIFI</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="ipads.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="ipad2">
+	<div data-role="header" class="fondo">
+		<h1>IPAD WIFI 16 GB WHITE SPAMDS 13E/A</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/ipads/REFURB-IPAD2-WIFI-WHT-2011 16GB.jpg">
+        <h4>WIFI</h4>
+        <h4>IOS 6 E Icloud</h4>
+        <h4>Pantalla Retina de 9.7"</h4>
+        <h4>Camara Isight de 5MP y Camara Face Time HD</h4>
+        <h4>Hasta 10 Horas de Bateria</h4>
+        <h4>Chip A6X Con Graficos Quad Core</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="ipads.html">Regresar</a></h4>
+	</div>
+</div>
+
+<div data-role="page" id="ipad3">
+	<div data-role="header" class="fondo">
+		<h1>IPAD MINI WIFI 16 GB BLACK SPAMD528E/A</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/ipads/ipad black.jpg">
+        <h4>WIFI</h4>
+        <h4>IOS 6 E Icloud</h4>
+        <h4>Pantalla Retina de 7.9"</h4>
+        <h4>Camara Isight de 5MP y Camara Face Time HD</h4>
+        <h4>Hasta 10 Horas de Bateria</h4>
+        <h4>Chip A5</h4>
+	</div>
+	<div data-role="footer" class="fondo">
+		<h4><a href="ipads.html">Regresar</a></h4>
+	</div>
+    <div data-role="footer" class="fondo">
+		<h4><a href="">Comprar</a></h4>
+	</div>
+</div>
+
+<!--Termina Ipads-->
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Aplic. Web de jQuery Mobile</title>
+<link href="jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css"/>
+<script src="jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery.mobile-1.0.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+ $(document).ready(function() {
+                $("#mostrar").click(function(event) {
+                    $("#datos-bd").load('http://localhost/test/consulta.php',{}, function(response, status, xhr) {
+                          if (status == "error") {
+                            var msg = "<strong>¡Error!</strong> Por favor verifica tu conexión a internet";
+                            $("#capaerror").html('<div>' + msg + '</div>');
+                          }
+                        });
+                });
+            });  
+</script>
+<style type="text/css">
+.fondo{
+	background:#009;
+}
+</style>
+</head> 
+<body> 
+
+<div data-role="page" id="page">
+	<div data-role="header" class="fondo">
+		<h1>TABLETS</h1>
+	</div>
+	<div data-role="content">	
+    	<div id="datos-bd">
+        	<button id="mostrar">mostrardelabd</button>
+        </div>
+		<!--<ul data-role="listview">
+			<li><a href="#table1">Tablet SONY</a></li>
+            <li><a href="#table2">Tablet SAMSUNG</a></li>
+			<li><a href="#table3">Tablet POLAROID</a></li>
+		</ul>	-->	
+        test
+	</div>
+	<div data-role="footer">
+		<h4>Pie de página</h4>
+	</div>
+</div>
+
+<div data-role="page" id="table1">
+	<div data-role="header" class="fondo">
+		<h1>Tablet SONY</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/tablets/tablet sony sku_1040114.jpg">
+        <h4>SKU 1040114</h4>
+		<h4>Características</h4>
+		<h4>Sistema Operativo: Android 4.1</h4>
+		<h4>Procesador Snapdragon S4</h4>
+		<h4>Memoria RAM 2 GB</h4>
+		<h4>Disco Duro 16 GB</h4>
+        <h4>Pantalla 10.1"</h4>
+        <h4>Cámara 8 Mpx trasera / 2 Mpx frontal / Exmor sensor para dispositivos móviles</h4>
+        <h4>PRECIO CLIENTE INFINITUM</h4>
+		<h4>Pago de contado:	$ 7,699</h4>
+		<h4>13 meses:	$ 741</h4>
+		<h4>24 meses:	$ 445</h4>
+		<h4>36 meses:	$ 335</h4>
+		<h4>48 meses:	$ 269</h4>
+        <h4>NOTA: Los pagos mensuales serán cargados a tu Recibo TELMEX</h4>
+<h4>Precios expresados en Moneda Nacional con IVA incluido.</h4>
+<h4>Precios sujetos a cambios sin previo aviso.</h4>
+	</div>
+	<div data-role="footer">
+		<h4>Pie de página</h4>
+	</div>
+</div>
+
+<div data-role="page" id="table2">
+	<div data-role="header" class="fondo">
+		<h1>Tablet SAMSUNG</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/tablets/tablet samsung sku_1039833.jpg">
+        <h4>SKU 1039833</h4>
+		<h4>Características</h4>
+		<h4>Sistema Operativo: Android 4.1</h4>
+		<h4>Procesador Quad Core</h4>
+		<h4>Memoria RAM 2 GB</h4>
+		<h4>Disco Duro 16 GB + Micro SD</h4>
+        <h4>Pantalla 8"</h4>
+        <h4>Cámara 5 Mpx + 1.3 Mpx</h4>
+        <h4>PRECIO CLIENTE INFINITUM</h4>
+		<h4>Pago de contado:	$ 7,059</h4>
+		<h4>13 meses:	$ 686</h4>
+		<h4>24 meses:	$ 412</h4>
+		<h4>36 meses:	$ 310</h4>
+		<h4>48 meses:	$ 249</h4>
+        <h4>NOTA: Los pagos mensuales serán cargados a tu Recibo TELMEX</h4>
+<h4>Precios expresados en Moneda Nacional con IVA incluido.</h4>
+<h4>Precios sujetos a cambios sin previo aviso.</h4>
+	</div>
+	<div data-role="footer">
+		<h4>Pie de página</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page4">
+	<div data-role="header" class="fondo">
+		<h1>Tablet POLAROID</h1>
+	</div>
+	<div data-role="content">	
+		<img src="images/tablets/tablet polaroid sku_1041174.jpg">
+        <h4>SKU 1041174</h4>
+		<h4>Características</h4>
+		<h4>Sistema Operativo: Android 4.2</h4>
+		<h4>Procesador Cortex A-9</h4>
+		<h4>Memoria RAM 512 MB</h4>
+		<h4>Disco Duro 8 GB</h4>
+        <h4>Pantalla 7"</h4>
+        <h4>Cámara Web 0.3 Mpx</h4>
+        <h4>Incluye Audifinos tipo Dj</h4>
+        <h4>PRECIO CLIENTE INFINITUM</h4>
+		<h4>Pago de contado:	$ 7,059</h4>
+		<h4>13 meses:	$ 686</h4>
+		<h4>24 meses:	$ 412</h4>
+		<h4>36 meses:	$ 310</h4>
+		<h4>48 meses:	$ 249</h4>
+        <h4>NOTA: Los pagos mensuales serán cargados a tu Recibo TELMEX</h4>
+<h4>Precios expresados en Moneda Nacional con IVA incluido.</h4>
+<h4>Precios sujetos a cambios sin previo aviso.</h4>
+	</div>
+	<div data-role="footer">
+		<h4>Pie de página</h4>
+	</div>
+</div>
+
+</body>
+</html>
